@@ -15,7 +15,22 @@ class GameLogic
     private _Runner:TBX.Runner;
     public constructor()
     {
+        if(Old)
+        {
+            //TODO
+        }
+        else
+        {
+            this.Init();
+        }
+    }
+    private Init() : void
+    {
         TBX.Settings.GlobalFontFamily = "Segoe UI";
+        if(window.location.href.indexOf("itch.io") != -1)
+        {
+            TBX.Settings.GlobalFontScale = 0.67;
+        }
         this._Game = new TBX.Game();
         this._Game.Name = "ToyBox Starter";
         let SM:SoundManager = new SoundManager();
