@@ -8,6 +8,7 @@ import { SoundManager } from "./../SoundManager";
 
 class SettingsScene extends UIScene
 {
+    public static Current:SettingsScene;
     private _Back:TBX.Button;
     private _MasterVolume:Slider;
     private _MusicVolume:Slider;
@@ -22,9 +23,10 @@ class SettingsScene extends UIScene
         else
         {
             this.InitSettingsScene();
+            SettingsScene.Current = this;
         }
     }
-    protected InitSettingsScene() : void
+    private InitSettingsScene() : void
     {
         this.Name = "Settings";
         this._Title.Text = "Settings";

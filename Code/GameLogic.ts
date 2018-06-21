@@ -7,13 +7,14 @@ import { MenuScene } from "./UIScenes/MenuScene";
 import { SettingsScene } from "./UIScenes/SettingsScene";
 import { CreditsScene } from "./UIScenes/CreditsScene";
 import { GameOverScene } from "./UIScenes/GameOverScene";
+import { LoadingScene } from "./UIScenes/LoadingScene";
 import { GameScene } from "./Game/GameScene";
 
 class GameLogic
 {
     private _Game:TBX.Game;
     private _Runner:TBX.Runner;
-    public constructor()
+    public constructor(Old?:GameLogic)
     {
         if(Old)
         {
@@ -41,10 +42,11 @@ class GameLogic
         this._Game.Attach(new CreditsScene());
         this._Game.Attach(new GameScene());
         this._Game.Attach(new GameOverScene());
+        this._Game.Attach(new LoadingScene());
     }
     public Run() : void
     {
-        this._Runner.SwitchScene("Menu");
+        this._Runner.SwitchScene("Loading");
         this._Runner.Run();
     }
 }
