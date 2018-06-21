@@ -7,6 +7,7 @@ import { GameScene } from "./../Game/GameScene";
 
 class GameOverScene extends UIScene
 {
+    public static Current:GameOverScene;
     private _Back:TBX.Button;
     private _Retry:TBX.Button;
     private _ScoreLabel:TBX.Label;
@@ -20,10 +21,10 @@ class GameOverScene extends UIScene
         else
         {
             this.InitGameOverScene();
-            console.log(this);
+            GameOverScene.Current = this;
         }
     }
-    protected InitGameOverScene() : void
+    private InitGameOverScene() : void
     {
         this.Name = "GameOver";
         this._Title.Text = "Game Over";
@@ -34,6 +35,14 @@ class GameOverScene extends UIScene
         this._Retry.Events.Click.push(this.RetryClick);
         this._Back = this.CreateButton("Menu", 3);
         this._Back.Events.Click.push(this.BackClick);
+        this.Events.KeyDown.push(this.KeyDown.bind(this));
+    }
+    private KeyDown(G:TBX.Game, Args:any) : void
+    {
+        if(Args.KeyCode == 32)
+        {
+            this.RetryClick();
+        }
     }
     private BackClick() : void
     {

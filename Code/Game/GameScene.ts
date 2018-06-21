@@ -26,7 +26,7 @@ class GameScene extends TBX.Scene2D
             GameScene.Current = this;
         }
     }
-    public InitGameScene() : void
+    private InitGameScene() : void
     {
         this.Name = "Game";
         this.CreateBackground("Light");

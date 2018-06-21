@@ -6,6 +6,7 @@ import { UIScene } from "./UIScene";
 
 class CreditsScene extends UIScene
 {
+    public static Current:CreditsScene;
     private _Back:TBX.Button;
     public constructor(Old?:CreditsScene)
     {
@@ -17,9 +18,10 @@ class CreditsScene extends UIScene
         else
         {
             this.InitCreditsScene();
+            CreditsScene.Current = this;
         }
     }
-    protected InitCreditsScene() : void
+    private InitCreditsScene() : void
     {
         this.Name = "Credits";
         this._Title.Text = "Credits";

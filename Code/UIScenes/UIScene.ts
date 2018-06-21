@@ -20,7 +20,7 @@ class UIScene extends TBX.Scene2D
             this.InitUIScene(); 
         }
     } 
-    protected InitUIScene() : void
+    private InitUIScene() : void
     { 
         this.Name = "UI";
         this._OverColor = TBX.Color.Black;

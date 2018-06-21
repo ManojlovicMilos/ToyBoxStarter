@@ -6,6 +6,7 @@ import { UIScene } from "./UIScene";
 
 class MenuScene extends UIScene
 {
+    public static Current:MenuScene;
     private _Play:TBX.Button;
     private _Settings:TBX.Button;
     private _Credits:TBX.Button;
@@ -19,9 +20,10 @@ class MenuScene extends UIScene
         else
         {
             this.InitMenuScene();
+            MenuScene.Current = this;
         }
     }
-    protected InitMenuScene() : void
+    private InitMenuScene() : void
     {
         this.Name = "Menu";
         this.CreateBackground("Dark");

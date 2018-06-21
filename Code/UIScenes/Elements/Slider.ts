@@ -58,7 +58,7 @@ class Slider extends TBX.Tile
     }
     private Click(G:TBX.Game, Args:any) : void
     {
-        let Value:number = Args.Location.Value;
+        let Value:number = Args.Location.X;
         Value -= this.Position.X - this.Size.X / 2;
         Value /= this.Size.X;
         this._Percent = Value;
