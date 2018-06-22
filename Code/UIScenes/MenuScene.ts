@@ -9,6 +9,7 @@ class MenuScene extends UIScene
     public static Current:MenuScene;
     private _Play:TBX.Button;
     private _Settings:TBX.Button;
+    private _Scores:TBX.Button;
     private _Credits:TBX.Button;
     public constructor(Old?:MenuScene)
     {
@@ -34,7 +35,9 @@ class MenuScene extends UIScene
         this._Play.Events.Click.push(this.PlayClick);
         this._Settings = this.CreateButton("Settings", 1);
         this._Settings.Events.Click.push(this.SettingsClick);
-        this._Credits = this.CreateButton("Credits", 2);
+        this._Scores = this.CreateButton("Scores", 2);
+        this._Scores.Events.Click.push(this.ScoresClick);
+        this._Credits = this.CreateButton("Credits", 3);
         this._Credits.Events.Click.push(this.CreditsClick);
     }
     private PlayClick() : void
@@ -44,6 +47,10 @@ class MenuScene extends UIScene
     private SettingsClick() : void
     {
         TBX.Runner.Current.SwitchScene("Settings");
+    }
+    private ScoresClick() : void
+    {
+        TBX.Runner.Current.SwitchScene("Scores");
     }
     private CreditsClick() : void
     {

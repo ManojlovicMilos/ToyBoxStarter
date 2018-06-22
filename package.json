@@ -22,7 +22,10 @@
     "webpack-dev-server": "^2.7.1"
   },
   "dependencies": {
+    "@types/facebook-instant-games": "^6.2.1",
     "engineer-js": "0.0.65",
+    "fb-instant": "^6.1.0",
+    "fb-instant-games": "0.0.14",
     "ts-loader": "^2.3.2"
   }
 }

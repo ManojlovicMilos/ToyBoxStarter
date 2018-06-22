@@ -5,6 +5,7 @@ import * as TBX from "engineer-js";
 import { UIScene } from "./UIScene"; 
 import { Slider } from "./Elements/Slider";
 import { SoundManager } from "./../SoundManager";
+import * as FB from "fb-instant";
 
 class SettingsScene extends UIScene
 {

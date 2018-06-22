@@ -7,6 +7,7 @@ import { MenuScene } from "./MenuScene";
 import { SettingsScene } from "./SettingsScene";
 import { CreditsScene } from "./CreditsScene";
 import { GameOverScene } from "./GameOverScene";
+import { ScoreBoardScene } from "./ScoreBoardScene";
 import { GameScene } from "../Game/GameScene";
 
 class LoadingScene extends UIScene
@@ -58,6 +59,12 @@ class LoadingScene extends UIScene
         TBX.Runner.Current.PreloadScene("GameOver");
     }
     private LoadGameOverSceneFinished() : void
+    {
+        this._Progress.ChangeTargetScene(ScoreBoardScene.Current);
+        ScoreBoardScene.Current.Events.LoadComplete.push(this.LoadScoreBoardSceneFinished.bind(this));
+        TBX.Runner.Current.PreloadScene("Scores");
+    }
+    private LoadScoreBoardSceneFinished() : void
     {
         this._Progress.ChangeTargetScene(GameScene.Current);
         GameScene.Current.Events.LoadComplete.push(this.LoadGameSceneFinished.bind(this));
