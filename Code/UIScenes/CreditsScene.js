@@ -6,9 +6,7 @@ import { UIScene } from "./UIScene";
 
 class CreditsScene extends UIScene
 {
-    public static Current:CreditsScene;
-    private _Back:TBX.Button;
-    public constructor(Old?:CreditsScene)
+    constructor(Old)
     {
         super(Old);
         if(Old)
@@ -21,7 +19,7 @@ class CreditsScene extends UIScene
             CreditsScene.Current = this;
         }
     }
-    private InitCreditsScene() : void
+    InitCreditsScene()
     {
         this.Name = "Credits";
         this._Title.Text = "Credits";
@@ -36,7 +34,7 @@ class CreditsScene extends UIScene
         this._Back = this.CreateButton("Back", 3);
         this._Back.Events.Click.push(this.BackClick);
     }
-    private BackClick() : void
+    BackClick()
     {
         TBX.Runner.Current.SwitchScene("Menu");
     }

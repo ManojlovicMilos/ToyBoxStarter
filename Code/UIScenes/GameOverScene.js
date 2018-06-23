@@ -7,11 +7,7 @@ import { GameScene } from "./../Game/GameScene";
 
 class GameOverScene extends UIScene
 {
-    public static Current:GameOverScene;
-    private _Back:TBX.Button;
-    private _Retry:TBX.Button;
-    private _ScoreLabel:TBX.Label;
-    public constructor(Old?:GameOverScene)
+    constructor(Old)
     {
         super(Old);
         if(Old)
@@ -24,7 +20,7 @@ class GameOverScene extends UIScene
             GameOverScene.Current = this;
         }
     }
-    private InitGameOverScene() : void
+    InitGameOverScene()
     {
         this.Name = "GameOver";
         this._Title.Text = "Game Over";
@@ -37,24 +33,24 @@ class GameOverScene extends UIScene
         this._Back.Events.Click.push(this.BackClick);
         this.Events.KeyDown.push(this.KeyDown.bind(this));
     }
-    private KeyDown(G:TBX.Game, Args:any) : void
+    KeyDown(Game, Args)
     {
         if(Args.KeyCode == 32)
         {
             this.RetryClick();
         }
     }
-    private BackClick() : void
+    BackClick()
     {
         GameScene.Current.Reset();
         TBX.Runner.Current.SwitchScene("Menu");
     }
-    private RetryClick() : void
+    RetryClick()
     {
         GameScene.Current.Reset();
         TBX.Runner.Current.SwitchScene("Game");
     }
-    public OnSwitch() : void
+    OnSwitch()
     {
         //Override
         super.OnSwitch();

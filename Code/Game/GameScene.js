@@ -7,13 +7,8 @@ import { Player } from "./Elements/Player";
 
 class GameScene extends TBX.Scene2D
 {
-    public static Current:GameScene;
-    private _Level:Level;
-    private _Player:Player;
-    private _Score:number;
-    private _ScoreLabel:TBX.Label;
-    public get Score():number { return this._Score; }
-    public constructor(Old?:GameScene)
+    get Score() { return this._Score; }
+    constructor(Old)
     {
         super(Old);
         if(Old)
@@ -26,7 +21,7 @@ class GameScene extends TBX.Scene2D
             GameScene.Current = this;
         }
     }
-    private InitGameScene() : void
+    InitGameScene()
     {
         this.Name = "Game";
         this.CreateBackground("Light");
@@ -38,39 +33,39 @@ class GameScene extends TBX.Scene2D
         this._Score = 0;
         this._ScoreLabel = this.CreateLabel("0");
     }
-    public Reset() : void
+    Reset()
     {
         this._ScoreLabel.Text = "0";
         this._Player.Reset();
         this._Level.Reset();
     }
-    private Update() : void
+    Update()
     {
         this._Player.Update();
         this._Score = Math.floor((-this.Trans.Translation.X) / 400);
         this._ScoreLabel.Text = this._Score.toString();
         this._ScoreLabel.Update();
     }
-    private KeyDown(G:TBX.Game, Args:any) : void
+    KeyDown(Game, Args)
     {
         if(Args.KeyCode == 32)
         {
             this._Player.Jump();
         }
     }
-    private KeyUp(G:TBX.Game, Args:any) : void
+    KeyUp(Game, Args)
     {
         //TOFILL
     }
-    protected CreateBackground(Name:string) : void
+    CreateBackground(Name)
     {
-        let Back:TBX.Tile = TBX.SceneObjectUtil.CreateTile(Name, ["Resources/Textures/Backgrounds/"+Name+".png"], new TBX.Vertex(960,540), new TBX.Vertex(1920, 1080, 1));
+        let Back = TBX.SceneObjectUtil.CreateTile(Name, ["Resources/Textures/Backgrounds/"+Name+".png"], new TBX.Vertex(960,540), new TBX.Vertex(1920, 1080, 1));
         Back.Fixed = true;
         this.Attach(Back);
     }
-    protected CreateLabel(Text:string) : TBX.Label
+    CreateLabel(Text)
     {
-        let Label:TBX.Label = new TBX.Label(null, Text);
+        let Label = new TBX.Label(null, Text);
         Label.Size = new TBX.Vertex(800, 80);
         Label.TextSize = 60;
         Label.Position = new TBX.Vertex(960, 100, 0.2);

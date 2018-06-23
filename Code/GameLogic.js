@@ -12,9 +12,7 @@ import { GameScene } from "./Game/GameScene";
 
 class GameLogic
 {
-    private _Game:TBX.Game;
-    private _Runner:TBX.Runner;
-    public constructor(Old?:GameLogic)
+    constructor(Old)
     {
         if(Old)
         {
@@ -25,7 +23,7 @@ class GameLogic
             this.Init();
         }
     }
-    private Init() : void
+    Init()
     {
         TBX.Settings.GlobalFontFamily = "Segoe UI";
         if(window.location.href.indexOf("itch.io") != -1)
@@ -34,7 +32,7 @@ class GameLogic
         }
         this._Game = new TBX.Game();
         this._Game.Name = "ToyBox Starter";
-        let SM:SoundManager = new SoundManager();
+        let SM = new SoundManager();
         this._Runner = new TBX.Runner(this._Game, TBX.DrawEngineType.ThreeJS);
         this._Runner.SetResolution(new TBX.Vertex(1920, 1080, 0));
         this._Game.Attach(new MenuScene());
@@ -44,7 +42,7 @@ class GameLogic
         this._Game.Attach(new GameOverScene());
         this._Game.Attach(new LoadingScene());
     }
-    public Run() : void
+    Run()
     {
         this._Runner.SwitchScene("Loading");
         this._Runner.Run();

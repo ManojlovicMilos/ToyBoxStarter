@@ -6,11 +6,7 @@ import { UIScene } from "./UIScene";
 
 class MenuScene extends UIScene
 {
-    public static Current:MenuScene;
-    private _Play:TBX.Button;
-    private _Settings:TBX.Button;
-    private _Credits:TBX.Button;
-    public constructor(Old?:MenuScene)
+    constructor(Old)
     {
         super(Old);
         if(Old)
@@ -23,7 +19,7 @@ class MenuScene extends UIScene
             MenuScene.Current = this;
         }
     }
-    private InitMenuScene() : void
+    InitMenuScene()
     {
         this.Name = "Menu";
         this.CreateBackground("Dark");
@@ -37,15 +33,15 @@ class MenuScene extends UIScene
         this._Credits = this.CreateButton("Credits", 2);
         this._Credits.Events.Click.push(this.CreditsClick);
     }
-    private PlayClick() : void
+    PlayClick()
     {
         TBX.Runner.Current.SwitchScene("Game");
     }
-    private SettingsClick() : void
+    SettingsClick()
     {
         TBX.Runner.Current.SwitchScene("Settings");
     }
-    private CreditsClick() : void
+    CreditsClick()
     {
         TBX.Runner.Current.SwitchScene("Credits");
     }

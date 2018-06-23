@@ -4,9 +4,7 @@ import * as TBX from "engineer-js";
 
 class Player extends TBX.Tile
 {
-    private _Scene:TBX.Scene2D;
-    private _Velocity:TBX.Vertex;
-    public constructor(Old?:Player, Scene?:TBX.Scene2D)
+    constructor(Old, Scene)
     {
         super(Old);
         this._Scene = Scene;
@@ -19,7 +17,7 @@ class Player extends TBX.Tile
             this.Init();
         }
     }
-    private Init() : void
+    Init()
     {
         this.Size = new TBX.Vertex(60,60,1);
         this.Position = new TBX.Vertex(200,400,0.4);
@@ -27,13 +25,13 @@ class Player extends TBX.Tile
         this._Scene.Attach(this);
         this._Velocity = new TBX.Vertex();
     }
-    public Reset() : void
+    Reset()
     {
         this.Position = new TBX.Vertex(200,400,0.4);
         this._Velocity = new TBX.Vertex();
         this._Scene.Trans.Translation.X = 0;
     }
-    public Update() : void
+    Update()
     {
         this._Velocity.Y -= 1;
         this.Position.Add(this._Velocity.Copy().Scalar(-1));
@@ -49,11 +47,11 @@ class Player extends TBX.Tile
             this.GameOver();
         }
     }
-    public Jump() : void
+    Jump()
     {
         this._Velocity.Y = 20;
     }
-    private GameOver() : void
+    GameOver()
     {
         TBX.Runner.Current.SwitchScene("GameOver");
     }

@@ -1,4 +1,4 @@
 import { GameLogic } from "./GameLogic";
 
-let GL:GameLogic = new GameLogic();
+let GL = new GameLogic();
 GL.Run();

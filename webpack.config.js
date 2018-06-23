@@ -3,7 +3,7 @@ module.exports =
 {
   entry:
   {
-    app: ["./Code/App.ts"]
+    app: ["./Code/App.js"]
   },
   output:
   {
@@ -13,13 +13,10 @@ module.exports =
   },
   resolve:
   {
-    extensions: ['.ts', '.tsx', '.js']
+    extensions: ['.js']
   },
   module:
   {
-    loaders:
-    [
-      { test: /\.tsx?$/, loader: 'ts-loader' }
-    ]
+    loaders: []
   }
 }

@@ -11,8 +11,7 @@ import { GameScene } from "../Game/GameScene";
 
 class LoadingScene extends UIScene
 {
-    private _Progress:TBX.ProgressBar;
-    public constructor(Old?:LoadingScene)
+    constructor(Old)
     {
         super(Old);
         if(Old)
@@ -24,7 +23,7 @@ class LoadingScene extends UIScene
             this.InitLoadingScene();
         }
     }
-    private InitLoadingScene() : void
+    InitLoadingScene()
     {
         this.Name = "Loading";
         this.BackColor = TBX.Color.Black;
@@ -39,31 +38,31 @@ class LoadingScene extends UIScene
         MenuScene.Current.Events.LoadComplete.push(this.LoadMenuSceneFinished.bind(this));
         TBX.Runner.Current.PreloadScene("Menu");
     }
-    private LoadMenuSceneFinished() : void
+    LoadMenuSceneFinished()
     {
         this._Progress.ChangeTargetScene(SettingsScene.Current);
         SettingsScene.Current.Events.LoadComplete.push(this.LoadSettingsSceneFinished.bind(this));
         TBX.Runner.Current.PreloadScene("Settings");
     }
-    private LoadSettingsSceneFinished() : void
+    LoadSettingsSceneFinished()
     {
         this._Progress.ChangeTargetScene(CreditsScene.Current);
         CreditsScene.Current.Events.LoadComplete.push(this.LoadCreditsSceneFinished.bind(this));
         TBX.Runner.Current.PreloadScene("Credits");
     }
-    private LoadCreditsSceneFinished() : void
+    LoadCreditsSceneFinished()
     {
         this._Progress.ChangeTargetScene(GameOverScene.Current);
         GameOverScene.Current.Events.LoadComplete.push(this.LoadGameOverSceneFinished.bind(this));
         TBX.Runner.Current.PreloadScene("GameOver");
     }
-    private LoadGameOverSceneFinished() : void
+    LoadGameOverSceneFinished()
     {
         this._Progress.ChangeTargetScene(GameScene.Current);
         GameScene.Current.Events.LoadComplete.push(this.LoadGameSceneFinished.bind(this));
         TBX.Runner.Current.PreloadScene("Game");
     }
-    private LoadGameSceneFinished() : void
+    LoadGameSceneFinished()
     {
         TBX.Runner.Current.SwitchScene("Menu");
     }

@@ -4,12 +4,8 @@ import * as TBX from "engineer-js";
 
 class Slider extends TBX.Tile
 {
-    private _Percent:number;
-    private _Pointer:TBX.Tile;
-    private _Label:TBX.Label;
-    private _OnChange:Function[];
-    public get Change():Function[] { return this._OnChange; }
-    public constructor(Old?:Slider, Text?:string, Value?:number)
+    get Change() { return this._OnChange; }
+    constructor(Old, Text, Value)
     {
         super(Old);
         this._OnChange = [];
@@ -23,7 +19,7 @@ class Slider extends TBX.Tile
             this.Init(Text, Value);
         }
     }
-    public Init(Text?:string, Value?:number) : void
+    Init(Text, Value)
     {
         this._Percent = Value;
         this.Size = new TBX.Vertex(800, 50, 1);
@@ -37,28 +33,28 @@ class Slider extends TBX.Tile
         this._Label.TextSize = 30;
         this._Label.Border.Width = 0;
     }
-    public OnAttach(Args:any) : void
+    OnAttach(Args)
     {
         this._Label.Position.Y = this.Position.Y - 60;
         this.UpdatePointer();
         Args.Scene.Attach(this._Pointer);
         Args.Scene.Attach(this._Label);
     }
-    private UpdatePointer() : void
+    UpdatePointer()
     {
         this._Pointer.Size.X = this._Percent * this.Size.X;
         this._Pointer.Position = this.Position.Copy();
         this._Pointer.Position.X = this.Position.X - this.Size.X / 2 + this._Percent * (this.Size.X / 2);
     }
-    public Toggle(Toggled:boolean) : void
+    Toggle(Toggled)
     {
         this.Active = Toggled;
         this._Pointer.Active = Toggled;
         this._Label.Active = Toggled;
     }
-    private Click(G:TBX.Game, Args:any) : void
+    Click(G, Args)
     {
-        let Value:number = Args.Location.X;
+        let Value = Args.Location.X;
         Value -= this.Position.X - this.Size.X / 2;
         Value /= this.Size.X;
         this._Percent = Value;

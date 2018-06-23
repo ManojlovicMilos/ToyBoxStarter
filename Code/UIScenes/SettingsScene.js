@@ -2,18 +2,12 @@ export { SettingsScene }
 
 import * as TBX from "engineer-js";
 
-import { UIScene } from "./UIScene"; 
-import { Slider } from "./Elements/Slider";
+import { UIScene } from "./UIScene";
 import { SoundManager } from "./../SoundManager";
 
 class SettingsScene extends UIScene
 {
-    public static Current:SettingsScene;
-    private _Back:TBX.Button;
-    private _MasterVolume:Slider;
-    private _MusicVolume:Slider;
-    private _SoundVolume:Slider;
-    public constructor(Old?:SettingsScene)
+    constructor(Old)
     {
         super(Old);
         if(Old)
@@ -26,7 +20,7 @@ class SettingsScene extends UIScene
             SettingsScene.Current = this;
         }
     }
-    private InitSettingsScene() : void
+    InitSettingsScene()
     {
         this.Name = "Settings";
         this._Title.Text = "Settings";
@@ -41,19 +35,19 @@ class SettingsScene extends UIScene
         this._Back = this.CreateButton("Back", 3);
         this._Back.Events.Click.push(this.BackClick);
     }
-    private UpdateMasterVolume(Value:number) : void
+    UpdateMasterVolume(Value)
     {
         SoundManager.MasterVolume = Value;
     }
-    private UpdateMusicVolume(Value:number) : void
+    UpdateMusicVolume(Value)
     {
         SoundManager.MusicVolume = Value;
     }
-    private UpdateSoundVolume(Value:number) : void
+    UpdateSoundVolume(Value)
     {
         SoundManager.SoundVolume = Value;
     }
-    private BackClick() : void
+    BackClick()
     {
         TBX.Runner.Current.SwitchScene("Menu");
     }
