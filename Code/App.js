@@ -1,6 +1,9 @@
 import { GameLogic } from "./GameLogic";
 
-if(FBInstant.player) console.log(FBInstant.player.getName());
-
-let GL = new GameLogic();
-GL.Run();
+FBInstant.initializeAsync()
+.then(function()
+{
+    FBInstant.setLoadingProgress(5);
+    //let GL = new GameLogic();
+    //GL.Run();
+});

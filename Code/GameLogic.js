@@ -7,8 +7,8 @@ import { MenuScene } from "./UIScenes/MenuScene";
 import { SettingsScene } from "./UIScenes/SettingsScene";
 import { CreditsScene } from "./UIScenes/CreditsScene";
 import { GameOverScene } from "./UIScenes/GameOverScene";
-import { LoadingScene } from "./UIScenes/LoadingScene";
 import { GameScene } from "./Game/GameScene";
+import { SceneLoader } from "./SceneLoader";
 
 class GameLogic
 {
@@ -41,6 +41,8 @@ class GameLogic
         this._Game.Attach(new GameScene());
         this._Game.Attach(new GameOverScene());
         this._Game.Attach(new LoadingScene());
+        let SL = new SceneLoader();
+        SL.Load();
     }
     Run()
     {
