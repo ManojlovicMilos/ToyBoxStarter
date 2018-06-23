@@ -17,6 +17,12 @@ module.exports =
   },
   module:
   {
-    loaders: []
+    loaders: [
+      {
+        test: /\.(js|jsx)$/,
+        use: 'babel-loader?presets[]=es2015',
+        exclude: /(node_modules|bower_components)/,
+      }
+    ]
   }
 }
