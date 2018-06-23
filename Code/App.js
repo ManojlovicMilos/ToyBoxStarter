@@ -1,9 +1,20 @@
+import * as TBX from "engineer-js";
+
 import { GameLogic } from "./GameLogic";
 
-FBInstant.initializeAsync()
-.then(function()
+TBX.FB = true;
+
+if(TBX.FB)
 {
-    FBInstant.setLoadingProgress(5);
-    //let GL = new GameLogic();
-    //GL.Run();
-});
+    FBInstant.initializeAsync()
+    .then(function()
+    {
+        FBInstant.setLoadingProgress(10);
+        let GL = new GameLogic();
+    });
+}
+else
+{
+    let GL = new GameLogic();
+    GL.Run();
+}
