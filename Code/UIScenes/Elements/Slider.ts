@@ -26,20 +26,22 @@ class Slider extends TBX.Tile
     public Init(Text?:string, Value?:number) : void
     {
         this._Percent = Value;
-        this.Size = new TBX.Vertex(800, 50, 1);
-        this.Paint = TBX.Color.FromString("#444444");
-        this._Pointer = TBX.SceneObjectUtil.CreateTile("SliderPointer", null, new TBX.Vertex(), new TBX.Vertex(800, 50, 1));
-        this._Pointer.Paint = TBX.Color.FromRGBA(244,208,63,255);
+        this.Size = new TBX.Vertex(800, 15, 1);
+        this.Paint = TBX.Color.FromString("#111111");
+        this._Pointer = TBX.SceneObjectUtil.CreateTile("SliderPointer", null, new TBX.Vertex(), new TBX.Vertex(800, 15, 1));
+        this._Pointer.Paint = TBX.Color.White;
         this.Events.Click.push(this.Click.bind(this));
         this._Label = new TBX.Label(null, Text);
-        this._Label.ForeColor = TBX.Color.FromRGBA(244,208,63,255);
-        this._Label.Size = new TBX.Vertex(960, 45);
-        this._Label.TextSize = 30;
+        this._Label.ForeColor = TBX.Color.FromString("#888888");
+        this._Label.Size = new TBX.Vertex(400, 45);
+        this._Label.Position.X = 350;
+        this._Label.TextSize = 25;
+        this._Label.TextAlign = TBX.TextAlign.Left;
         this._Label.Border.Width = 0;
     }
     public OnAttach(Args:any) : void
     {
-        this._Label.Position.Y = this.Position.Y - 60;
+        this._Label.Position.Y = this.Position.Y - 40;
         this.UpdatePointer();
         Args.Scene.Attach(this._Pointer);
         Args.Scene.Attach(this._Label);

@@ -2,15 +2,16 @@ export { LoadingScene }
 
 import * as TBX from "engineer-js";
 
+import { World } from "./../Data/World";
 import { UIScene } from "./UIScene";
 import { MenuScene } from "./MenuScene";
 import { SettingsScene } from "./SettingsScene";
 import { CreditsScene } from "./CreditsScene";
-import { GameOverScene } from "./GameOverScene";
-import { GameScene } from "../Game/GameScene";
+import { AdventureScene } from "./../Game/AdventureScene";
 
 class LoadingScene extends UIScene
 {
+    private _Request:XMLHttpRequest;
     private _Progress:TBX.ProgressBar;
     public constructor(Old?:LoadingScene)
     {
@@ -53,18 +54,27 @@ class LoadingScene extends UIScene
     }
     private LoadCreditsSceneFinished() : void
     {
-        this._Progress.ChangeTargetScene(GameOverScene.Current);
-        GameOverScene.Current.Events.LoadComplete.push(this.LoadGameOverSceneFinished.bind(this));
-        TBX.Runner.Current.PreloadScene("GameOver");
+        this._Request = new XMLHttpRequest();
+        this._Request.open("GET", "Resources/Data/World.json", true); 
+        this._Request.onloadend = this.LoadGameDataWorldFinished.bind(this);
+        this._Request.send(null);
     }
-    private LoadGameOverSceneFinished() : void
+    private LoadGameDataWorldFinished() : void
     {
-        this._Progress.ChangeTargetScene(GameScene.Current);
-        GameScene.Current.Events.LoadComplete.push(this.LoadGameSceneFinished.bind(this));
-        TBX.Runner.Current.PreloadScene("Game");
+        World.Entries = JSON.parse(this._Request.responseText);
+        this._Request = new XMLHttpRequest();
+        this._Request.open("GET", "Resources/Data/Settings.json", true); 
+        this._Request.onloadend = this.LoadGameDataSettingsFinished.bind(this);
+        this._Request.send(null);
     }
-    private LoadGameSceneFinished() : void
+    private LoadGameDataSettingsFinished() : void
     {
+        World.Settings = JSON.parse(this._Request.responseText);
+        TBX.Runner.Current.Game.Attach(new AdventureScene());
         TBX.Runner.Current.SwitchScene("Menu");
+    }
+    private LoadAdventureSceneFinished() : void
+    {
+        
     }
 }

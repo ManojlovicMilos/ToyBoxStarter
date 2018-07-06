@@ -33,7 +33,7 @@ class CreditsScene extends UIScene
         this.CreateLabel("Anung Un Rama", 3);
         this.CreateLabel("Langdon Everett Caul", 4);
         this.CreateLabel("special thanks to Roger", 5);
-        this._Back = this.CreateButton("Back", 3);
+        this._Back = this.CreateButton("Back", 4);
         this._Back.Events.Click.push(this.BackClick);
     }
     private BackClick() : void

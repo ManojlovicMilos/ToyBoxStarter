@@ -3,6 +3,7 @@ export { UIScene };
 import * as TBX from "engineer-js";
 
 import { Slider } from "./Elements/Slider";
+import { MenuButton } from "./Elements/MenuButton";
 
 class UIScene extends TBX.Scene2D 
 { 
@@ -25,12 +26,13 @@ class UIScene extends TBX.Scene2D
         this.Name = "UI";
         this._OverColor = TBX.Color.Black;
         this._Title = new TBX.Label(null, "Title");
-        this._Title.Size = new TBX.Vertex(1920,200,1);
-        this._Title.Position = new TBX.Vertex(960,300);
+        this._Title.Size = new TBX.Vertex(960,200,1);
+        this._Title.Position = new TBX.Vertex(580,150);
         this._Title.BackColor = TBX.Color.FromRGBA(255,255,255,0);
         this._Title.Border.Width = 0;
-        this._Title.ForeColor = TBX.Color.FromRGBA(244,208,63,255);
-        this._Title.TextSize = 60;
+        this._Title.ForeColor = TBX.Color.White;
+        this._Title.TextSize = 70;
+        this._Title.TextAlign = TBX.TextAlign.Left;
         this.Attach(this._Title);
     }
     protected CreateBackground(Name:string) : void
@@ -40,25 +42,19 @@ class UIScene extends TBX.Scene2D
     }
     protected CreateButton(Text:string, Order:number) : TBX.Button
     {
-        let Button:TBX.Button = new TBX.Button(null, Text);
-        Button.Name = Text;
-        Button.Position = new TBX.Vertex(960, 500 + 120 * Order, 0.2);
-        Button.Padding = 0;
-        Button.ForeColor = this._OverColor;
-        Button.BackColor = TBX.Color.FromRGBA(244,208,63,255);
-        Button.Border.Width = 0;
-        Button.Border.Radius = 2;
-        this.Attach(Button);
-        return Button;
+        let NewMenuButton:MenuButton = new MenuButton(null, Text, Order);
+        this.Attach(NewMenuButton);
+        return NewMenuButton;
     }
     protected CreateLabel(Text:string, Order:number) : TBX.Label
     {
         let Label:TBX.Label = new TBX.Label(null, Text);
         Label.Name = Text;
-        Label.Size = new TBX.Vertex(800, 50);
+        Label.Size = new TBX.Vertex(400, 50);
         Label.TextSize = 30;
-        Label.Position = new TBX.Vertex(960, 400 + 60 * Order, 0.2);
-        Label.ForeColor = TBX.Color.FromRGBA(244,208,63,255);
+        Label.TextAlign = TBX.TextAlign.Left;
+        Label.Position = new TBX.Vertex(350, 300 + 60 * Order, 0.2);
+        Label.ForeColor = TBX.Color.FromString("#888888");
         Label.Border.Width = 0;
         this.Attach(Label);
         return Label;
@@ -67,7 +63,7 @@ class UIScene extends TBX.Scene2D
     {
         let NewSlider:Slider = new Slider(null, Text, Value);
         NewSlider.Name = Text;
-        NewSlider.Position = new TBX.Vertex(960, 500 + 120 * Order, 0.2);
+        NewSlider.Position = new TBX.Vertex(550, 300 + 120 * Order, 0.2);
         this.Attach(NewSlider);
         return NewSlider;
     }

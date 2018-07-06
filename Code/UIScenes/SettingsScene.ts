@@ -38,7 +38,7 @@ class SettingsScene extends UIScene
         this._MusicVolume.Change.push(this.UpdateMusicVolume);
         this._SoundVolume = this.CreateSlider("Effect Volume", SoundManager.SoundVolume, 2);
         this._SoundVolume.Change.push(this.UpdateSoundVolume);
-        this._Back = this.CreateButton("Back", 3);
+        this._Back = this.CreateButton("Back", 4);
         this._Back.Events.Click.push(this.BackClick);
     }
     private UpdateMasterVolume(Value:number) : void
