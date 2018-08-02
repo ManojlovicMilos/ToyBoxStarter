@@ -41,11 +41,12 @@ class AdventureScene extends TBX.Scene2D
         this._Frame = TBX.SceneObjectUtil.CreateTile("Frame", ["Resources/Textures/Images/Frame.png"], new TBX.Vertex(960, FramePosition, 1), new TBX.Vertex(1920,World.Settings.ImageHeight,1));
         this._Frame.Paint = TBX.Color.Black;
         this._Image = TBX.SceneObjectUtil.CreateTile("Image", [], new TBX.Vertex(960, FramePosition, 0.2), new TBX.Vertex(1920,World.Settings.ImageHeight,1))
-        this._Options = [];
+        this._Layer1 = TBX.SceneObjectUtil.CreateTile("Layer1", [], new TBX.Vertex(960, FramePosition, 0.4), new TBX.Vertex(1920,World.Settings.ImageHeight,1))        this._Options = [];
         this.Attach(this._Title);
         this.Attach(this._Text);
         this.Attach(this._Frame);
         this.Attach(this._Image);
+        this.Attach(this._Layer1);
     }
     private RunCommand(Command:string) : void
     {
@@ -71,6 +72,14 @@ class AdventureScene extends TBX.Scene2D
             this._Image.Collection = new TBX.ImageCollection(null, ["Resources/Textures/Images/"+Entry.Image+".png"]);
             this._Image.Index = 0;
             this._Image.Modified = true;
+            if(Entry.Layer1 != "")
+            {
+                this._Layer1.Collection = new TBX.ImageCollection(null, ["Resources/Textures/Images/"+Entry.Layer1+".png"]);
+                this._Layer1.Index = 0;
+                this._Layer1.Modified = true;
+                this._Layer1.Active = true;
+            }
+            else this._Layer1.Active = false;
             for(let i = 0; i < this._Options.length; i++)
             {
                 this.Remove(this._Options[i]);
