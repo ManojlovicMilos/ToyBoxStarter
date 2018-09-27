@@ -1,6 +1,5 @@
 var path = require("path");
-module.exports =
-{
+module.exports = {
   entry:
   {
     app: ["./Code/App.ts"]
@@ -17,7 +16,7 @@ module.exports =
   },
   module:
   {
-    loaders:
+    rules:
     [
       { test: /\.tsx?$/, loader: 'ts-loader' }
     ]
