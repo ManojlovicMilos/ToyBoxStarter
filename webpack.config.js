@@ -1,8 +1,13 @@
 var path = require("path");
 module.exports = {
+  mode: "development",
   entry:
   {
     app: ["./Code/App.ts"]
+  },
+  optimization:
+  {
+    sideEffects: false
   },
   output:
   {
