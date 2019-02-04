@@ -74,7 +74,6 @@ class SoundManager
     private UpdateVolumes() : void
     {
         this._Music.Volume = this._MasterVolume * this._MusicVolume;
-        console.log(this._Music.Volume);
         for(let i in this._SoundsPaths)
         {
             this._Sounds[this._SoundsPaths[i].Name].Volume = this._MasterVolume * this._SoundVolume;
