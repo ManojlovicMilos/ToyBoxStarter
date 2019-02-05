@@ -33,7 +33,7 @@ class GameLogic
             TBX.Settings.GlobalFontScale = 0.67;
         }
         this._Game = new TBX.Game();
-        this._Game.Name = "ToyBox Starter";
+        this._Game.Name = "[[name]]";
         let SM:SoundManager = new SoundManager();
         this._Runner = new TBX.Runner(this._Game, TBX.DrawEngineType.ThreeJS);
         this._Runner.SetResolution(new TBX.Vertex(1920, 1080, 0));

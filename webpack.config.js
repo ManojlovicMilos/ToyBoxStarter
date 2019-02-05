@@ -12,7 +12,7 @@ module.exports = {
   output:
   {
     path: path.resolve(__dirname, "build"),
-    filename: "tbx_s.js",
+    filename: "[[NameCamel]].js",
     publicPath: "/Resources/"
   },
   resolve:

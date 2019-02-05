@@ -1,4 +1,4 @@
 /node_modules
 /tscompiled
-/build/tbx_s.js
+/build/[[NameCamel]].js
 package-lock.json
