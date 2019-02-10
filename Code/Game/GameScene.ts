@@ -1,6 +1,6 @@
 export { GameScene };
 
-import * as TBX from "engineer-js";
+import * as TBX from "toybox-engine";
 
 import { Level } from "./Elements/Level";
 import { Player } from "./Elements/Player";

@@ -1,6 +1,6 @@
 export { Level }
 
-import * as TBX from "engineer-js";
+import * as TBX from "toybox-engine";
 
 class Level
 {

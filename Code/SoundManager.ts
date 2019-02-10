@@ -1,6 +1,6 @@
 export { SoundManager }
 
-import * as TBX from "engineer-js";
+import * as TBX from "toybox-engine";
 
 const VOLUME_FACTOR = 100;
 const DEFAULT_MASTER_VOLUME = 1.0;
