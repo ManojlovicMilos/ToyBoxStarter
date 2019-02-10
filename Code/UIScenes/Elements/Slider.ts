@@ -1,6 +1,6 @@
 export { Slider }
 
-import * as TBX from "engineer-js";
+import * as TBX from "toybox-engine";
 
 class Slider extends TBX.Tile
 {
