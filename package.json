@@ -22,6 +22,6 @@
     "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
-    "engineer-js": "0.0.69"
+    "toybox-engine": "^0.2.0"
   }
 }
