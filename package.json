@@ -4,7 +4,9 @@
   "description": "Project description",
   "main": "build/public/tc.js",
   "scripts": {
-    "start": "webpack && webpack-dev-server --hot",
+    "start": "concurrently -k \"npm run build\" \"npm run serve\"",
+    "serve": "webpack-dev-server --hot",
+    "build": "tsc && webpack --watch",
     "prod": "tsc && webpack --mode=production"
   },
   "keywords": [
@@ -19,9 +21,10 @@
     "typescript": "^3.3.1",
     "webpack": "^4.29.1",
     "webpack-cli": "^3.2.1",
-    "webpack-dev-server": "^3.1.14"
+    "webpack-dev-server": "^3.1.14",
+    "concurrently": "^5.0.2"
   },
   "dependencies": {
-    "toybox-engine": "^0.2.0"
+    "toybox-engine": "^0.2.1"
   }
 }
