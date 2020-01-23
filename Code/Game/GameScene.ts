@@ -30,6 +30,7 @@ class GameScene extends TBX.Scene2D
     {
         this.Name = "Game";
         this.CreateBackground("Light");
+        this.Events.Click.push(this.Click.bind(this));
         this.Events.KeyDown.push(this.KeyDown.bind(this));
         this.Events.KeyUp.push(this.KeyUp.bind(this));
         this.Events.Update.push(this.Update.bind(this));
@@ -50,6 +51,10 @@ class GameScene extends TBX.Scene2D
         this._Score = Math.floor((-this.Trans.Translation.X) / 400);
         this._ScoreLabel.Text = this._Score.toString();
         this._ScoreLabel.Update();
+    }
+    private Click(G:TBX.Game, Args:any) : void
+    {
+        this._Player.Jump();
     }
     private KeyDown(G:TBX.Game, Args:any) : void
     {
