@@ -9,7 +9,7 @@ import { SoundManager } from "./../SoundManager";
 class SettingsScene extends UIScene
 {
     public static Current:SettingsScene;
-    private _Back:TBX.Button;
+    private _Back:TBX.UI.Button;
     private _MasterVolume:Slider;
     private _MusicVolume:Slider;
     private _SoundVolume:Slider;

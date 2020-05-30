@@ -30,7 +30,7 @@ class LoadingScene extends UIScene
         this.BackColor = TBX.Color.Black;
         this.CreateBackground("Dark");
         this._Title.Text = TBX.Runner.Current.Game.Name;
-        this._Title.TextSize = 70;
+        this._Title.Style.Text.Size = 70;
         this._OverColor = TBX.Color.FromRGBA(23,38,49,255);
         this._Progress = new TBX.ProgressBar();
         this._Progress.ChangeTargetScene(MenuScene.Current);

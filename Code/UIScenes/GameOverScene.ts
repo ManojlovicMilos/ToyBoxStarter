@@ -8,9 +8,9 @@ import { GameScene } from "./../Game/GameScene";
 class GameOverScene extends UIScene
 {
     public static Current:GameOverScene;
-    private _Back:TBX.Button;
-    private _Retry:TBX.Button;
-    private _ScoreLabel:TBX.Label;
+    private _Back:TBX.UI.Button;
+    private _Retry:TBX.UI.Button;
+    private _ScoreLabel:TBX.UI.Label;
     public constructor(Old?:GameOverScene)
     {
         super(Old);
