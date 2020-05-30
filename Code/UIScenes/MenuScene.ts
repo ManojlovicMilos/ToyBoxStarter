@@ -7,9 +7,9 @@ import { UIScene } from "./UIScene";
 class MenuScene extends UIScene
 {
     public static Current:MenuScene;
-    private _Play:TBX.Button;
-    private _Settings:TBX.Button;
-    private _Credits:TBX.Button;
+    private _Play:TBX.UI.Button;
+    private _Settings:TBX.UI.Button;
+    private _Credits:TBX.UI.Button;
     public constructor(Old?:MenuScene)
     {
         super(Old);
@@ -28,7 +28,7 @@ class MenuScene extends UIScene
         this.Name = "Menu";
         this.CreateBackground("Dark");
         this._Title.Text = TBX.Runner.Current.Game.Name;
-        this._Title.TextSize = 70;
+        this._Title.Style.Text.Size = 70;
         this._OverColor = TBX.Color.FromRGBA(23,38,49,255);
         this._Play = this.CreateButton("Play", 0);
         this._Play.Events.Click.push(this.PlayClick);

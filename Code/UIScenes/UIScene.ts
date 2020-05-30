@@ -6,7 +6,7 @@ import { Slider } from "./Elements/Slider";
 
 class UIScene extends TBX.Scene2D 
 { 
-    protected _Title:TBX.Label;
+    protected _Title:TBX.UI.Label;
     protected _OverColor:TBX.Color;
     public constructor(Old?:UIScene) 
     { 
@@ -24,13 +24,14 @@ class UIScene extends TBX.Scene2D
     { 
         this.Name = "UI";
         this._OverColor = TBX.Color.Black;
-        this._Title = new TBX.Label(null, "Title");
+        this._Title = new TBX.UI.Label(null, "Title");
         this._Title.Size = new TBX.Vertex(1920,200,1);
-        this._Title.Position = new TBX.Vertex(960,300);
+        this._Title.Position = new TBX.Vertex(0,100);
         this._Title.BackColor = TBX.Color.FromRGBA(255,255,255,0);
-        this._Title.Border.Width = 0;
         this._Title.ForeColor = TBX.Color.FromRGBA(244,208,63,255);
-        this._Title.TextSize = 60;
+        this._Title.Dock = TBX.UI.DockType.Top;
+        this._Title.Style.Border.Width = 0;
+        this._Title.Style.Text.Size = 60;
         this.Attach(this._Title);
     }
     protected CreateBackground(Name:string) : void
@@ -38,28 +39,30 @@ class UIScene extends TBX.Scene2D
         let Back:TBX.Tile = TBX.SceneObjectUtil.CreateTile(Name, ["Resources/Textures/Backgrounds/"+Name+".png"], new TBX.Vertex(960,540), new TBX.Vertex(1920, 1080, 1));
         this.Attach(Back);
     }
-    protected CreateButton(Text:string, Order:number) : TBX.Button
+    protected CreateButton(Text:string, Order:number) : TBX.UI.Button
     {
-        let Button:TBX.Button = new TBX.Button(null, Text);
+        let Button:TBX.UI.Button = new TBX.UI.Button(null, Text);
         Button.Name = Text;
-        Button.Position = new TBX.Vertex(960, 500 + 120 * Order, 0.2);
-        Button.Padding = 0;
+        Button.Position = new TBX.Vertex(0, -50 + 120 * Order, 0.2);
         Button.ForeColor = this._OverColor;
         Button.BackColor = TBX.Color.FromRGBA(244,208,63,255);
-        Button.Border.Width = 0;
-        Button.Border.Radius = 2;
+        Button.Dock = TBX.UI.DockType.Center;
+        Button.Style.Padding.All = 0;
+        Button.Style.Border.Width = 0;
+        Button.Style.Border.Radius = 2;
         this.Attach(Button);
         return Button;
     }
-    protected CreateLabel(Text:string, Order:number) : TBX.Label
+    protected CreateLabel(Text:string, Order:number) : TBX.UI.Label
     {
-        let Label:TBX.Label = new TBX.Label(null, Text);
+        let Label:TBX.UI.Label = new TBX.UI.Label(null, Text);
         Label.Name = Text;
         Label.Size = new TBX.Vertex(800, 50);
-        Label.TextSize = 30;
-        Label.Position = new TBX.Vertex(960, 400 + 60 * Order, 0.2);
+        Label.Position = new TBX.Vertex(0, -150 + 60 * Order, 0.2);
         Label.ForeColor = TBX.Color.FromRGBA(244,208,63,255);
-        Label.Border.Width = 0;
+        Label.Dock = TBX.UI.DockType.Center;
+        Label.Style.Text.Size = 30;
+        Label.Style.Border.Width = 0;
         this.Attach(Label);
         return Label;
     }

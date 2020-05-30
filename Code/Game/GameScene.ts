@@ -11,7 +11,7 @@ class GameScene extends TBX.Scene2D
     private _Level:Level;
     private _Player:Player;
     private _Score:number;
-    private _ScoreLabel:TBX.Label;
+    private _ScoreLabel:TBX.UI.Label;
     public get Score():number { return this._Score; }
     public constructor(Old?:GameScene)
     {
@@ -73,14 +73,14 @@ class GameScene extends TBX.Scene2D
         Back.Fixed = true;
         this.Attach(Back);
     }
-    protected CreateLabel(Text:string) : TBX.Label
+    protected CreateLabel(Text:string) : TBX.UI.Label
     {
-        let Label:TBX.Label = new TBX.Label(null, Text);
+        let Label:TBX.UI.Label = new TBX.UI.Label(null, Text);
         Label.Size = new TBX.Vertex(800, 80);
-        Label.TextSize = 60;
         Label.Position = new TBX.Vertex(960, 100, 0.2);
         Label.ForeColor = TBX.Color.FromRGBA(244,208,63,255);
-        Label.Border.Width = 0;
+        Label.Style.Text.Size = 60;
+        Label.Style.Border.Width = 0;
         this.Attach(Label);
         return Label;
     }
