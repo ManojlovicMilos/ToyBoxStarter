@@ -7,7 +7,7 @@ import { UIScene } from "./UIScene";
 class CreditsScene extends UIScene
 {
     public static Current:CreditsScene;
-    private _Back:TBX.Button;
+    private _Back:TBX.UI.Button;
     public constructor(Old?:CreditsScene)
     {
         super(Old);

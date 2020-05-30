@@ -6,7 +6,7 @@ class Slider extends TBX.Tile
 {
     private _Percent:number;
     private _Pointer:TBX.Tile;
-    private _Label:TBX.Label;
+    private _Label:TBX.UI.Label;
     private _OnChange:Function[];
     public get Change():Function[] { return this._OnChange; }
     public constructor(Old?:Slider, Text?:string, Value?:number)
@@ -31,15 +31,17 @@ class Slider extends TBX.Tile
         this._Pointer = TBX.SceneObjectUtil.CreateTile("SliderPointer", null, new TBX.Vertex(), new TBX.Vertex(800, 50, 1));
         this._Pointer.Paint = TBX.Color.FromRGBA(244,208,63,255);
         this.Events.Click.push(this.Click.bind(this));
-        this._Label = new TBX.Label(null, Text);
+        this._Label = new TBX.UI.Label(null, Text);
+        this._Label.Dock = TBX.UI.DockType.Top;
+        this._Label.Position = new TBX.Vertex(0, 0, 0);
         this._Label.ForeColor = TBX.Color.FromRGBA(244,208,63,255);
         this._Label.Size = new TBX.Vertex(960, 45);
-        this._Label.TextSize = 30;
-        this._Label.Border.Width = 0;
+        this._Label.Style.Text.Size = 30;
+        this._Label.Style.Border.Width = 0;
     }
     public OnAttach(Args:any) : void
     {
-        this._Label.Position.Y = this.Position.Y - 60;
+        this._Label.Position.Y = this.Position.Y - 80;
         this.UpdatePointer();
         Args.Scene.Attach(this._Pointer);
         Args.Scene.Attach(this._Label);

@@ -17,14 +17,14 @@
   "author": "[[Author]]",
   "license": "MIT",
   "devDependencies": {
+    "concurrently": "^5.0.2",
     "ts-loader": "^5.3.3",
     "typescript": "^3.3.1",
     "webpack": "^4.29.1",
     "webpack-cli": "^3.2.1",
-    "webpack-dev-server": "^3.1.14",
-    "concurrently": "^5.0.2"
+    "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "toybox-engine": "^0.2.1"
+    "toybox-engine": "^0.2.2"
   }
 }
