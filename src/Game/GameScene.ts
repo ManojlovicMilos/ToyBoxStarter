@@ -5,82 +5,79 @@ import * as TBX from "toybox-engine";
 import { Level } from "./Elements/Level";
 import { Player } from "./Elements/Player";
 
-class GameScene extends TBX.Scene2D
-{
-    public static Current:GameScene;
-    private _Level:Level;
-    private _Player:Player;
-    private _Score:number;
-    private _ScoreLabel:TBX.UI.Label;
-    public get Score():number { return this._Score; }
-    public constructor(Old?:GameScene)
-    {
+class GameScene extends TBX.Scene2D {
+    public static Current: GameScene;
+    private _Level: Level;
+    private _Player: Player;
+    private _Score: number;
+    private _ScoreLabel: TBX.UI.Label;
+    public get Score(): number { return this._Score; }
+
+    public constructor(Old?: GameScene) {
         super(Old);
-        if(Old)
-        {
+        if (Old) {
             //TODO
         }
-        else
-        {
+        else {
             this.InitGameScene();
             GameScene.Current = this;
         }
     }
-    private InitGameScene() : void
-    {
+
+    private InitGameScene(): void {
         this.Name = "Game";
         this.CreateBackground("Light");
         this.Events.Click.push(this.Click.bind(this));
         this.Events.KeyDown.push(this.KeyDown.bind(this));
         this.Events.KeyUp.push(this.KeyUp.bind(this));
         this.Events.Update.push(this.Update.bind(this));
-        this._Level = new Level(null, this);
-        this._Player = new Player(null, this);
+        this._Level = new Level(this);
+        this._Player = new Player(this);
         this._Score = 0;
         this._ScoreLabel = this.CreateLabel("0");
     }
-    public Reset() : void
-    {
+
+    public Reset(): void {
         this._ScoreLabel.Text = "0";
         this._Player.Reset();
         this._Level.Reset();
     }
-    private Update() : void
-    {
+
+    private Update(): void {
         this._Player.Update();
         this._Score = Math.floor((-this.Trans.Translation.X) / 400);
         this._ScoreLabel.Text = this._Score.toString();
         this._ScoreLabel.Update();
     }
-    private Click(G:TBX.Game, Args:any) : void
-    {
+
+    private Click(G: TBX.Game, Args: any): void {
         this._Player.Jump();
     }
-    private KeyDown(G:TBX.Game, Args:any) : void
-    {
-        if(Args.KeyCode == 32)
-        {
+
+    private KeyDown(G: TBX.Game, Args: any): void {
+        if (Args.KeyCode == 32) {
             this._Player.Jump();
         }
     }
-    private KeyUp(G:TBX.Game, Args:any) : void
-    {
-        //TOFILL
+
+    private KeyUp(G: TBX.Game, Args: any): void {
+        // KeyUp
     }
-    protected CreateBackground(Name:string) : void
-    {
-        let Back:TBX.Tile = TBX.SceneObjectUtil.CreateTile(Name, ["Resources/Textures/Backgrounds/"+Name+".png"], new TBX.Vertex(960,540), new TBX.Vertex(1920, 1080, 1));
+
+    protected CreateBackground(Name: string): void {
+        let Back: TBX.Tile = TBX.SceneObjectUtil.CreateTile(Name, ["Textures/Backgrounds/" + Name + ".png"], new TBX.Vertex(960, 540), new TBX.Vertex(1920, 1080, 1));
         Back.Fixed = true;
         this.Attach(Back);
     }
-    protected CreateLabel(Text:string) : TBX.UI.Label
-    {
-        let Label:TBX.UI.Label = new TBX.UI.Label(null, Text);
+
+    protected CreateLabel(Text: string): TBX.UI.Label {
+        let Label: TBX.UI.Label = new TBX.UI.Label(null, Text);
         Label.Size = new TBX.Vertex(800, 80);
-        Label.Position = new TBX.Vertex(960, 100, 0.2);
-        Label.ForeColor = TBX.Color.FromRGBA(244,208,63,255);
+        Label.Position = new TBX.Vertex(560, 100, 0.2);
+        Label.ForeColor = TBX.Color.FromRGBA(244, 208, 63, 255);
         Label.Style.Text.Size = 60;
         Label.Style.Border.Width = 0;
+        Label.Dock = TBX.UI.DockType.TopLeft;
         this.Attach(Label);
         return Label;
     }

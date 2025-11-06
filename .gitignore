@@ -1,4 +1,4 @@
 /node_modules
 /tscompiled
-/build/[[NameCamel]].js
+/dist
 package-lock.json
