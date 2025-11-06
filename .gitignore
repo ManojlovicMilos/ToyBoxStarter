@@ -1,4 +1,4 @@
 /node_modules
 /tscompiled
-/build/tbx_s.js
+/dist
 package-lock.json
