@@ -6,6 +6,10 @@ import { UIScene } from "./UIScene";
 import { Slider } from "./Elements/Slider";
 import { SoundManager } from "../SoundManager";
 
+const MASTER_VOLUME_KEY = 'tbx_master_volume';
+const MUSIC_VOLUME_KEY = 'tbx_master_volume';
+const SOUND_VOLUME_KEY = 'tbx_master_volume';
+
 class SettingsScene extends UIScene {
     public static Current: SettingsScene;
     private _Back: TBX.UI.Button;

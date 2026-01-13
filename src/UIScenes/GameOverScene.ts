@@ -26,7 +26,7 @@ class GameOverScene extends UIScene {
         GameOverScene.Current = this;
     }
 
-    private KeyDown(G: TBX.Game, Args: any): void {
+    private KeyDown(G: TBX.Game, Args: { KeyCode: number }): void {
         if (Args.KeyCode == 32) {
             this.RetryClick();
         }

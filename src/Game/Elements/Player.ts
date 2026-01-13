@@ -2,6 +2,8 @@ export { Player }
 
 import * as TBX from "toybox-engine";
 
+import { SoundManager } from "../../SoundManager";
+
 class Player extends TBX.Sprite {
     private _Scene: TBX.Scene2D;
     private _Velocity: TBX.Vertex;
@@ -45,6 +47,7 @@ class Player extends TBX.Sprite {
 
     public Jump(): void {
         this._Velocity.Y = 20;
+        SoundManager.Play('Whoosh');
     }
 
     private GameOver(): void {

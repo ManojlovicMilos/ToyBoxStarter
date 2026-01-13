@@ -6,11 +6,27 @@ const VOLUME_FACTOR = 100;
 const DEFAULT_MASTER_VOLUME = 1.0;
 const DEFAULT_MUSIC_VOLUME = 0.8;
 const DEFAULT_SOUND_VOLUME = 0.8;
+const SOUND_SETTINGS_KEY = 'tbx_sound_settings';
+
+type VolumeValuesObject = {
+    Master?: number;
+    Music?: number;
+    Sound?: number;
+}
+
+type SoundSettings = {
+    Name: string;
+    File: string;
+    Volume?: number;
+    Looped?: boolean;
+    Autoplay?: boolean;
+};
 
 class SoundManager {
-    private static Current: SoundManager;
-    private _Sounds: any;
-    private _SoundsPaths: any[];
+    public static Current: SoundManager;
+
+    private _Sounds: SoundSettings[];
+    private _SoundObjectss: { [key: string]: TBX.SoundObject };
     private _Music: TBX.SoundObject;
     private _MasterVolume: number;
     private _MusicVolume: number;
@@ -35,29 +51,30 @@ class SoundManager {
     }
 
     private Init(): void {
-        this._MasterVolume = DEFAULT_MASTER_VOLUME;
-        this._MusicVolume = DEFAULT_MUSIC_VOLUME;
-        this._SoundVolume = DEFAULT_SOUND_VOLUME;
+        const LoadedVolumes = this.LoadVolume();
+        this._MasterVolume = LoadedVolumes?.Master || DEFAULT_MASTER_VOLUME;
+        this._MusicVolume = LoadedVolumes?.Music || DEFAULT_MUSIC_VOLUME;
+        this._SoundVolume = LoadedVolumes?.Sound || DEFAULT_SOUND_VOLUME;
         this._Music = new TBX.SoundObject("Sounds/Music.mp3");
-        this._Music.Volume = VOLUME_FACTOR * DEFAULT_MUSIC_VOLUME;
+        this._Music.Volume = VOLUME_FACTOR * this._MasterVolume * this._MusicVolume;
         this._Music.Looped = true;
-        this._Music.Play();
-        this._SoundsPaths =
+        this._Music.Autoplay = true;
+        this._Sounds =
             [
-                { Name: "Special", File: "Special.wav" }
+                { Name: "Whoosh", File: "Whoosh.wav" }
             ];
-        this._Sounds = {};
-        for (let i in this._SoundsPaths) {
-            let Sound: TBX.SoundObject = new TBX.SoundObject("Sounds/" + this._SoundsPaths[i].Path);
-            Sound.Autoplay = !!this._SoundsPaths[i].Autoplay;
-            Sound.Looped = !!this._SoundsPaths[i].Looped;
-            Sound.Volume = this._SoundsPaths[i].Volume || VOLUME_FACTOR * DEFAULT_SOUND_VOLUME;
-            this._Sounds[this._SoundsPaths[i].Name] = Sound;
+        this._SoundObjectss = {};
+        for (let i in this._Sounds) {
+            let Sound: TBX.SoundObject = new TBX.SoundObject("Sounds/" + this._Sounds[i].File);
+            Sound.Autoplay = !!this._Sounds[i].Autoplay;
+            Sound.Looped = !!this._Sounds[i].Looped;
+            Sound.Volume = this._Sounds[i].Volume || VOLUME_FACTOR * DEFAULT_SOUND_VOLUME;
+            this._SoundObjectss[this._Sounds[i].Name] = Sound;
         }
     }
 
     public Play(SoundName: string): void {
-        this._Sounds[SoundName].Play();
+        this._SoundObjectss[SoundName].Play();
     }
     
     public static Play(SoundName: string): void {
@@ -66,8 +83,28 @@ class SoundManager {
 
     private UpdateVolumes(): void {
         this._Music.Volume = this._MasterVolume * this._MusicVolume;
-        for (let i in this._SoundsPaths) {
-            this._Sounds[this._SoundsPaths[i].Name].Volume = this._MasterVolume * this._SoundVolume;
+        for (let i in this._Sounds) {
+            this._SoundObjectss[this._Sounds[i].Name].Volume = this._MasterVolume * this._SoundVolume;
         }
+        this.SaveVolume({
+            Master: this._MasterVolume,
+            Music: this._MusicVolume,
+            Sound: this._SoundVolume,
+        });
+    }
+
+    private LoadVolume(): VolumeValuesObject | null {
+        const Value = localStorage.getItem(SOUND_SETTINGS_KEY);
+        if (Value) {
+            const ParsedObject = JSON.parse(Value);
+            if (ParsedObject) {
+                return ParsedObject as VolumeValuesObject;
+            }
+        }
+        return null;
+    }
+
+    private SaveVolume(VolumeData: VolumeValuesObject): void {
+        localStorage.setItem(SOUND_SETTINGS_KEY, JSON.stringify(VolumeData));
     }
 }
