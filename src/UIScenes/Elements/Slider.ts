@@ -27,7 +27,7 @@ class Slider extends TBX.Tile {
         this._Label.Style.Border.Width = 0;
     }
 
-    public OnAttach(Args: any): void {
+    public OnAttach(Args: { Scene: TBX.Scene }): void {
         this._Label.Position.Y = this.Position.Y - 80;
         this.UpdatePointer();
         Args.Scene.Attach(this._Pointer);
@@ -46,7 +46,7 @@ class Slider extends TBX.Tile {
         this._Label.Active = Toggled;
     }
 
-    private Click(G: TBX.Game, Args: any): void {
+    private Click(G: TBX.Game, Args: { Location: TBX.Vertex }): void {
         let Value: number = Args.Location.X;
         Value -= this.Position.X - this.Size.X / 2;
         Value /= this.Size.X;

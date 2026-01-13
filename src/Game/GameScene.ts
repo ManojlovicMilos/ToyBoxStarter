@@ -50,17 +50,17 @@ class GameScene extends TBX.Scene2D {
         this._ScoreLabel.Update();
     }
 
-    private Click(G: TBX.Game, Args: any): void {
+    private Click(G: TBX.Game): void {
         this._Player.Jump();
     }
 
-    private KeyDown(G: TBX.Game, Args: any): void {
+    private KeyDown(G: TBX.Game, Args: { KeyCode: number }): void {
         if (Args.KeyCode == 32) {
             this._Player.Jump();
         }
     }
 
-    private KeyUp(G: TBX.Game, Args: any): void {
+    private KeyUp(G: TBX.Game): void {
         // KeyUp
     }
 
